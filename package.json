@@ -1,0 +1,17 @@
+{
+  "name": "playwright-meckano",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.29.1"
+  },
+  "scripts": {
+    "meckano":"playwright test --headed",
+    "test:meckano":"playwright test --headed --debug"
+
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  }
+}
