@@ -13,10 +13,13 @@ test("fill meckano", async ({ page }) => {
     .filter({ hasText: "כניסה" })
     .click();
   await page.waitForLoadState("networkidle");
-  await page.getByLabel("שם משתמש").click();
-  await page.getByLabel("שם משתמש").fill(process.env.USERNAME!);
-  await page.getByLabel("סיסמה").click();
-  await page.getByLabel("סיסמה").fill(process.env.PASSWORD!);
+  // await page.getByLabel("שם משתמש").click();
+  const email = page.locator("input#email");
+  await email.click();
+  await email.fill(process.env.USERNAME!);
+  const password = page.locator("input#password");
+  await password.click();
+  await password.fill(process.env.PASSWORD!);
   const navigationPromise = page.waitForNavigation();
   await page.locator("input.send.login", { hasText: "התחברות" }).click();
   await navigationPromise;
