@@ -13,7 +13,6 @@ test("fill meckano", async ({ page }) => {
     .filter({ hasText: "כניסה" })
     .click();
   await page.waitForLoadState("networkidle");
-  // await page.getByLabel("שם משתמש").click();
   const email = page.locator("input#email");
   await email.click();
   await email.fill(process.env.USERNAME!);
@@ -21,7 +20,7 @@ test("fill meckano", async ({ page }) => {
   await password.click();
   await password.fill(process.env.PASSWORD!);
   const navigationPromise = page.waitForNavigation();
-  await page.locator("input.send.login", { hasText: "התחברות" }).click();
+  await page.locator("input.send.login").click();
   await navigationPromise;
   const monthly = page.locator("#li-monthly-employee-report");
 
@@ -49,12 +48,6 @@ test("fill meckano", async ({ page }) => {
     ) {
       continue;
     }
-    // const rowInnerText = await row
-    //   .locator("td:nth-child(2) .employee-information p")
-    //   .innerText();
-    // await row.screenshot({
-    //   path: `./screenshots/screenshot${rowInnerText}.png`,
-    // });
 
     const event = row.locator(".text-center > .missing.center");
     const eventInnerHtml = await event.evaluate((node) => node.innerHTML);
@@ -73,8 +66,8 @@ test("fill meckano", async ({ page }) => {
       }
       if ((await checkInInput.inputValue()) === "__:__") {
         await checkInInput.fill("09:00");
+        // await checkInInput.clear();
       }
-      // await checkInInput.clear();
       let checkoutBox = row.locator("td:nth-child(4) > div > .checkout");
 
       if (checkoutBox) {
@@ -94,8 +87,8 @@ test("fill meckano", async ({ page }) => {
 
       if ((await checkOutInput.inputValue()) === "__:__") {
         await checkOutInput.fill("18:00");
+        // await checkOutInput.clear();
       }
-      // await checkOutInput.clear();
 
       await page.keyboard.press("Enter");
     }

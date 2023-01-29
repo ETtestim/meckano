@@ -7,8 +7,9 @@
     "@playwright/test": "^1.29.1"
   },
   "scripts": {
+    "meckano:headless":"playwright test",
     "meckano":"playwright test --headed",
-    "test:meckano":"playwright test --headed --debug"
+    "meckano:test":"playwright test --headed --debug"
 
   },
   "dependencies": {
